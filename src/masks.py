@@ -1,4 +1,4 @@
-card_number_input: str
+bcard_number_input: str
 account_number_input: str
 
 
