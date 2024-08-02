@@ -1,7 +1,6 @@
 bcard_number_input: str
 account_number_input: str
 
-
 def get_mask_card_number(cart_number: str) -> str:
     """маскировка введенного номера банковской карты"""
 
