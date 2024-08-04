@@ -1,5 +1,7 @@
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
+
 
 @pytest.mark.parametrize(
     "number, expected",
@@ -25,7 +27,7 @@ def test_mask_account_card(number: str, expected: str) -> str:
     return expected
 
 
-@gitpytest.mark.parametrize(
+@pytest.mark.parametrize(
     "number, expected",
     [
         ("2024-03-11T02:26:18.671407", "11.03.2024"),
@@ -37,4 +39,3 @@ def test_get_date(number: str, expected: str) -> str:
     """тестирование функции get_mask_card_number из masks.py"""
     assert get_date(number) == expected
     return expected
-
