@@ -37,8 +37,9 @@ def transaction_descriptions(list_input: list) -> Any:
 
 def card_number_generator(start_input: int, end_input: int) -> Any:
     """генератор формирования номеров банковских карт"""
-
-    for number in range(start_input, end_input):
+    if start_input < 1 or end_input < 1 or end_input < start_input:
+        return print("Неправильный ввод чисел для формирования номера карты")
+    for number in range(start_input, end_input + 1):
         count_length = 1
         new_string = ""
 
@@ -47,7 +48,7 @@ def card_number_generator(start_input: int, end_input: int) -> Any:
             count_length += 1
 
         new_string = f"{new_string}{str(number)}"
-        card_number = f"({new_string[0:4]} {new_string[4:9]} {new_string[9:13]} {new_string[13:]})"
+        card_number = f"{new_string[0:4]} {new_string[4:8]} {new_string[8:12]} {new_string[12:]}"
         yield card_number
 
 
@@ -123,10 +124,7 @@ if __name__ == "__main__":
 
     for operation_out in description_operation:
         print(operation_out)
-    # usd_transactions= (filter((info_list for i, info_list in enumerate(list_bank) if \
-    # info_list["operationAmount"]["currency"]["name"] == "USD"), list_bank))
 
-    number_card = card_number_generator(9999, 10010)
+    number_card = card_number_generator(9999999999999998, 10000000000000000)
     for card_number in number_card:
         print(card_number)
-    # print(next(usd_transactions))

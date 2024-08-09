@@ -33,7 +33,6 @@ def filter_descriptions_card_number():
                     "code": "USD"
                 }
             },
-            "description": "Перевод со счета на счет",
             "from": "Счет 19708645243227258542",
             "to": "Счет 75651667383060284188"
         },
