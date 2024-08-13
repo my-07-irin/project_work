@@ -1,8 +1,12 @@
 from typing import Any
 
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+
+from src.generators import card_number_generator
 
 
+from src.generators import filter_by_currency
+
+from src.generators import transaction_descriptions
 def test_filter_by_currency(filter_descriptions_card_number: list) -> Any:
     """тестирование генератора filter_by_currency из файла generators"""
     generator = filter_by_currency(filter_descriptions_card_number)

@@ -18,7 +18,7 @@ def decorator_log(predicate, error_message):
                     with open(arg, 'w', encoding='utf-8') as file:
                          file.write(f'Вызвана функция: {function.__name__}   время работы функции: ')
                          file.write(str(time_work))
-                except:
+                except FileNotFoundError:
                     print(f'Вызвана функция: {function.__name__}   error: FileNotFoundError: {arg} ')
                     print(error_message)
             else:
@@ -46,8 +46,8 @@ def example(log_input: str):
 if __name__ == '__main__':
 
     example('../Dat/log.txt')
-
-    example('../Data/log.txt')
-
-    example('')
+#
+#     example('../Data/log.txt')
+#
+#     example('')
 
