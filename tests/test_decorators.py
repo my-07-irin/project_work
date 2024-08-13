@@ -10,7 +10,12 @@ def test_decorator_log(capsys):
     assert captured.out == f"Вызвана функция: example"
 
 
-def test_decorator_log():
-    with pytest.raises(Exception, file_input='../Dat/log.txt'):
-        example()
+def test_decorator_log(predical_file_print):
+    with pytest.raises(FileNotFoundError, predical_file_print):
+        example('../Dat/log.txt')
+
+
+def test_example(file_input):
+    with pytest.raises(OSError, file_input, error_message='Файл для вывода данных'):
+        example('../Dat/log.txt')
 
