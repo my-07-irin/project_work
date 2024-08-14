@@ -11,7 +11,7 @@ def test_decorator_log(capsys):
 
 
 def test_decorator_log(predical_file_print):
-    with pytest.raises(FileNotFoundError, predical_file_print):
+    with pytest.raises(ValueError, predical_file_print):
         example('../Dat/log.txt')
 
 
