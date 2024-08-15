@@ -1,6 +1,7 @@
 from pathlib import Path
 from time import time
 from typing import Any, Callable
+import os
 
 
 def decorator_log(function: Callable) -> Callable:
@@ -12,7 +13,7 @@ def decorator_log(function: Callable) -> Callable:
         result = function(path_log)
         time_end = time()
         time_work = time_end - time_start
-        if Path(path_log).exists is True:
+        if os.path.exists(path_log) is True:
             with open(f"{result}log.txt", "w", encoding="utf-8") as file:
                 file.write(f"Вызвана функция: {function.__name__}   время работы функции: ")
                 file.write(str(time_work))
@@ -32,7 +33,7 @@ def example(path_input: str) -> Any:
     return path_input
 
 
-if __name__ == "__main__":
-    #    example("../Dat/")
-    example("")
-# example("../Data/") #
+#if __name__ == "__main__":
+#    example("../data/")
+#    example("")
+#    example("../Dat/") #
