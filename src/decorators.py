@@ -1,7 +1,6 @@
-from pathlib import Path
+import os
 from time import time
 from typing import Any, Callable
-import os
 
 
 def decorator_log(function: Callable) -> Callable:
@@ -33,7 +32,7 @@ def example(path_input: str) -> Any:
     return path_input
 
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 #    example("../data/")
 #    example("")
 #    example("../Dat/") #

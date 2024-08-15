@@ -1,38 +1,39 @@
 import pytest
 
-from src.masks import get_mask_account, get_mask_card_number
+from src.widget import mask_account_card, get_date
 
 
 @pytest.mark.parametrize(
     "number, expected",
     [
-        ("0987654321098765", "0987 65** **** 8765"),
-        ("7000792289606361", "7000 79** **** 6361"),
-        ("73654108430135874305", "7365 41** **** 3587"),
-        ("736", "номер карты введён неверно"),
-        ("73 65 41 08 43 01 35", "номер карты введён неверно"),
+        ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
+        ("Счет 64686473678894779589", "Счет **9589"),
+        ("MasterCard 7158300734726758", "MasterCard 7158 30** **** 6758"),
+        ("Счет 35383033474447895560", "Счет **5560"),
+        ("Visa Classic 6831982476737658", "Visa Classic 6831 98** **** 7658"),
+        ("Visa Platinum 8990922113665229", "Visa Platinum 8990 92** **** 5229"),
+        ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353"),
+        ("Счет 73654108430135874305", "Счет **4305"),
+        ("736", "не выбран тип карты"),
+        ("73 65 41 08 43 01 35", "не выбран тип карты"),
         ("", ""),
     ],
 )
-def test_get_mask_card_number(number: str, expected: str) -> str:
-    """тестирование функции get_mask_card_number из masks.py"""
-    assert get_mask_card_number(number) == expected
+def test_mask_account_card(number: str, expected: str) -> str:
+    """тестирование функции mask_account_card из widget.py"""
+    assert mask_account_card(number) == expected
     return expected
 
 
 @pytest.mark.parametrize(
     "account,expected",
     [
-        ("0987654321098765", "**8765"),
-        ("7000792289606361", "**6361"),
-        ("73654108430135874305", "**4305"),
-        ("73654108430135", "**0135"),
-        ("736", "номер счёта введён неверно"),
-        ("73 65 41 08 43 01 35", "номер счёта введён неверно"),
+        ("2024-03-11T02:26:18.671407", "11.03.2024"),
+        ("03-11", "дата введена неверно"),
         ("", ""),
     ],
 )
-def test_get_mask_account(account: str, expected: str) -> str:
-    """тестирование функции get_mask_account из masks.py"""
-    assert get_mask_account(account) == expected
+def test_get_date(account: str, expected: str) -> str:
+    """тестирование функции get_date из widget.py"""
+    assert get_date(account) == expected
     return expected
