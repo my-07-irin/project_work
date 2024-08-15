@@ -18,7 +18,7 @@ def test_example() -> Any:
     assert path_input == ""
 
     path_input = example("../Data/")
-    assert path_input == ",,/Data/"
+    assert path_input == "../Data/"
 
 
 def test_decorator_log() -> Callable:
@@ -29,8 +29,8 @@ def test_decorator_log() -> Callable:
         return path_input
 
     path_log = example("../data/")
-    assert path_log == ",,/data/"
+    assert path_log == "../data/"
 
     path_log = example("../dat/")
-    assert path_log == ",,/dat/"
+    assert path_log == "../dat/"
 
