@@ -1,28 +1,32 @@
 import os
 from functools import wraps
 from time import time
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 
 
-def decorator_log(path_log: Optional[str] = None) -> Callable:
+def decorator_log(path_log: str) -> Callable:
     """декаратор автоматической регистрации деталей выполнения вызванной функции"""
 
     def inner(function: Callable) -> Callable:
         @wraps(function)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             time_start = time()
-            result = function(*args, **kwargs)
-            time_end = time()
-            time_work = time_end - time_start
-            if os.path.exists(*args, **kwargs) is True:
-                with open(f"{result}log.txt", "w", encoding="utf-8") as file:
-                    file.write(f"Вызвана функция: {function.__name__}   время работы функции: ")
-                    file.write(str(time_work))
+            try:
+                function(*args, **kwargs)
+            except Exception:
+                str_out = f"Функция: {function.__name__} error: {Exception} input: {args}, {kwargs}"
             else:
-                print(f"Вызвана функция:{function.__name__}")
-                print(f"Время работы фукции: {time_work}")
+                time_end = time()
+                time_work = time_end - time_start
+                str_out = f"Функция: {function.__name__}   время работы функции: {time_work} "
 
-            return result
+            if os.path.exists(path_log) is True:
+                with open(f"{path_log}log.txt", "w", encoding="utf-8") as file:
+                    file.write(f"{str_out}")
+            else:
+                print(str_out)
+
+            return
 
         return wrapper
 
@@ -30,15 +34,13 @@ def decorator_log(path_log: Optional[str] = None) -> Callable:
 
 
 @decorator_log("../Data/")
-def example(path_input: str) -> Any:
-    """функция перебора чисел из заданного диапазона"""
+def divining_numbers(a: float, b: float) -> float:
+    """деление чисел с задержкой во времени"""
     for i in range(1000000):
         continue
-    return path_input
+    return a / b
 
 
-#if __name__ == "__main__":
-#    example("../data/")
-#    example("")
-#    example("../Dat/") #
-#    help(example)
+if __name__ == "__main__":
+    divining_numbers(10, 2)
+#    help(divining_numbers)
