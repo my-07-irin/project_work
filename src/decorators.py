@@ -26,21 +26,19 @@ def decorator_log(path_log: str) -> Callable:
             else:
                 print(str_out)
 
-            return
-
         return wrapper
 
     return inner
 
 
-@decorator_log("../Data/")
-def divining_numbers(a: float, b: float) -> float:
+@decorator_log(path_log="../Dat/")
+def divining_numbers(a: Any, b: Any) -> Any:
     """деление чисел с задержкой во времени"""
     for i in range(1000000):
         continue
     return a / b
 
 
-if __name__ == "__main__":
-    divining_numbers(10, 2)
+#if __name__ == "__main__":
+#    divining_numbers(10, 2)
 #    help(divining_numbers)

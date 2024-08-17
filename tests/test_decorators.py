@@ -1,36 +1,25 @@
-import os
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 import pytest
 
-from src.decorators import decorator_log, example
+from src.decorators import decorator_log, divining_numbers
+
+
+def test_decorator_log():
+
+    assert divining_numbers(10, 2) == 5.0
+    assert divining_numbers(10, 2) == 5.0
+    assert divining_numbers(0, 2) == 0.0
+    assert divining_numbers(2, 5) == 0.4
+
+    with pytest.raises(Exception):
+        divining_numbers(2, 0)
+
 
 
 def test_decorator_log(capsys: Any) -> Callable:
-    """тестирование вывода на консоль"""
-    decorator_log(function=example)
+    """вывод на консоль"""
+
+    decorator_log(path_log="../Data/")
     captured = capsys.readouterr()
     assert captured.out == ""
-
-
-def test_example() -> Any:
-    path_input = example("")
-    assert path_input == ""
-
-    path_input = example("../Data/")
-    assert path_input == "../Data/"
-
-
-def test_decorator_log() -> Callable:
-    @decorator_log
-    def example(path_input: str) -> Any:
-        for i in range(1000000):
-            continue
-        return path_input
-
-    path_log = example("../data/")
-    assert path_log == "../data/"
-
-    path_log = example("../dat/")
-    assert path_log == "../dat/"
-
