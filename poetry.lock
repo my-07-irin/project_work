@@ -532,4 +532,4 @@ mkdir = "*"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "3e9e47b8007a60fd3bee794587619ae7d813a83ae7606ab3d8f4484914842560"
+content-hash = "4dc07477186966e97b9c5741069a870e459beb63e01c90d7ef6894a3398230e8"

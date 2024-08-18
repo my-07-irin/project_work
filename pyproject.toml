@@ -22,10 +22,6 @@ flake8 = "^7.1.0"
 mypy = "^1.11.0"
 black = "^24.4.2"
 
-
-[tool.poetry.group.Link.dependencies]
-isort = "^5.13.2"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
