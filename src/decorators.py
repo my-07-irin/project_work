@@ -1,44 +1,36 @@
-import os
 from functools import wraps
-from time import time
 from typing import Any, Callable
 
 
-def decorator_log(path_log: str) -> Callable:
+def decorator_log(path_log: Any = None) -> Any:
     """декаратор автоматической регистрации деталей выполнения вызванной функции"""
 
     def inner(function: Callable) -> Callable:
         @wraps(function)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            time_start = time()
             try:
-                function(*args, **kwargs)
-            except Exception:
-                str_out = f"Функция: {function.__name__} error: {Exception} input: {args}, {kwargs}"
+                result = function(*args, **kwargs)
+            except Exception as e:
+                str_out = f"Функция: {function.__name__} error: {e} input: {args}, {kwargs}"
+                result = None
             else:
-                time_end = time()
-                time_work = time_end - time_start
-                str_out = f"Функция: {function.__name__}   время работы функции: {time_work} "
-
-            if os.path.exists(path_log) is True:
-                with open(f"{path_log}log.txt", "w", encoding="utf-8") as file:
+                str_out = f"Функция: {function.__name__} OK "
+                result = function(*args, **kwargs)
+            if path_log is not None:
+                with open(f"{path_log}", "w", encoding="utf-8") as file:
                     file.write(f"{str_out}")
             else:
                 print(str_out)
+            return result
 
         return wrapper
 
     return inner
 
 
-@decorator_log(path_log="../Dat/")
-def divining_numbers(a: Any, b: Any) -> Any:
+@decorator_log(path_log="../data/log.txt")
+def divining_numbers(a: int, b: int) -> float:
     """деление чисел с задержкой во времени"""
     for i in range(1000000):
         continue
     return a / b
-
-
-#if __name__ == "__main__":
-#    divining_numbers(10, 2)
-#    help(divining_numbers)

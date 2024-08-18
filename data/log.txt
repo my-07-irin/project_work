@@ -1,1 +1,1 @@
-Функция: divining_numbers   время работы функции: 0.017696857452392578 
+Функция: divining_numbers OK 
