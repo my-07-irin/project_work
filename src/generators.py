@@ -1,6 +1,5 @@
 from typing import Any
 
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 def filter_by_currency(list_input: list, currency_input: str = "USD") -> Any:
     """транзакции по заданному коду валюты"""

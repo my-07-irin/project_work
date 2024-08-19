@@ -28,7 +28,7 @@ def test_mask_account_card(number: str, expected: str) -> str:
 
 
 @pytest.mark.parametrize(
-     "number, expected",
+    "number, expected",
     [
         ("2024-03-11T02:26:18.671407", "11.03.2024"),
         ("03.11", "дата введена неверно"),
