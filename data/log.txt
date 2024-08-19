@@ -1,0 +1,1 @@
+Функция: divining_numbers OK 
