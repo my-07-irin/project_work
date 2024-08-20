@@ -10,11 +10,13 @@ def decorator_log(path_log: Any = None) -> Any:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             str_out = ""
             try:
-                function(*args, **kwargs)
+                result = function(*args, **kwargs)
             except Exception as e:
                 str_out = f"Функция: {function.__name__} error: {e} input: {args}"
+                raise e
             else:
                 str_out = f"Функция: {function.__name__} OK "
+                return result
             finally:
                 if path_log is not None:
                     with open(f"{path_log}", "w", encoding="utf-8") as file:
