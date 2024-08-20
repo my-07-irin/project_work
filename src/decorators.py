@@ -8,20 +8,21 @@ def decorator_log(path_log: Any = None) -> Any:
     def inner(function: Callable) -> Callable:
         @wraps(function)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
+            str_out = ""
             try:
                 result = function(*args, **kwargs)
             except Exception as e:
-                str_out = f"Функция: {function.__name__} error: {e} input: {args}, {kwargs}"
-                result = None
+                str_out = f"Функция: {function.__name__} error: {e} input: {args}"
+                raise e
             else:
                 str_out = f"Функция: {function.__name__} OK "
-                result = function(*args, **kwargs)
-            if path_log is not None:
-                with open(f"{path_log}", "w", encoding="utf-8") as file:
-                    file.write(f"{str_out}")
-            else:
-                print(str_out)
-            return result
+                return result
+            finally:
+                if path_log is not None:
+                    with open(f"{path_log}", "w", encoding="utf-8") as file:
+                        file.write(f"{str_out}")
+                else:
+                    print(str_out)
 
         return wrapper
 
