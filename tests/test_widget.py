@@ -1,6 +1,6 @@
 import pytest
 
-from src.widget import mask_account_card, get_date
+from src.widget import get_date, mask_account_card
 
 
 @pytest.mark.parametrize(
@@ -14,26 +14,28 @@ from src.widget import mask_account_card, get_date
         ("Visa Platinum 8990922113665229", "Visa Platinum 8990 92** **** 5229"),
         ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353"),
         ("Счет 73654108430135874305", "Счет **4305"),
-        ("736", "не выбран тип карты"),
-        ("73 65 41 08 43 01 35", "не выбран тип карты"),
+        ("Maestro 736", "Maestro Неправильный набор цифр карты 736"),
+        ("Счет 7365", "Счет **7365"),
+        ("Счет 736", "Неправильный набор цифр счета 736"),
+        (" 5999414228426353", "не выбран тип карты"),
         ("", ""),
     ],
 )
 def test_mask_account_card(number: str, expected: str) -> str:
-    """тестирование функции mask_account_card из widget.py"""
+    """тестирование функции get_mask_card_number из masks.py"""
     assert mask_account_card(number) == expected
     return expected
 
 
 @pytest.mark.parametrize(
-    "account,expected",
+    "number, expected",
     [
         ("2024-03-11T02:26:18.671407", "11.03.2024"),
-        ("03-11", "дата введена неверно"),
+        ("03.11", "дата введена неверно"),
         ("", ""),
     ],
 )
-def test_get_date(account: str, expected: str) -> str:
-    """тестирование функции get_date из widget.py"""
-    assert get_date(account) == expected
+def test_get_date(number: str, expected: str) -> str:
+    """тестирование функции get_mask_card_number из masks.py"""
+    assert get_date(number) == expected
     return expected
