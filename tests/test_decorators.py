@@ -5,7 +5,8 @@ import pytest
 from src.decorators import decorator_log, divining_numbers
 
 
-def test_decorator_log(path_log=None):
+@decorator_log()
+def test_decorator_log():
 
     assert divining_numbers(10, 2) == 5.0
     assert divining_numbers(0, 2) == 0.0
@@ -15,9 +16,11 @@ def test_decorator_log(path_log=None):
         divining_numbers(2, 0)
 
 
-def test_decorator_log(capsys: Any) -> Any:
-    """вывод на консоль"""
+@decorator_log()
+def test_decorator_to_terminal(capsys: Any) -> Any:
 
-    decorator_log(path_log="../Data/")
-    captured = capsys.readouterr()
-    assert captured.out == ""
+    result = divining_numbers(2, 5)
+
+    captured = capsys.readouterr(result)
+    print(captured.out)
+    assert captured.out == result
