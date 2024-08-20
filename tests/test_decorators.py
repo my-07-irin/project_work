@@ -1,5 +1,7 @@
 from typing import Any, Callable
 
+import sys
+
 import pytest
 
 from src.decorators import decorator_log, divining_numbers
@@ -20,7 +22,9 @@ def test_decorator_log():
 def test_decorator_to_terminal(capsys: Any) -> Any:
 
     result = divining_numbers(2, 5)
-
-    captured = capsys.readouterr(result)
-    print(captured.out)
+    captured = capsys.readouterr()
     assert captured.out == result
+
+    result = divining_numbers(2, 0)
+    captured = capsys.readouterr()
+    assert captured.err == result

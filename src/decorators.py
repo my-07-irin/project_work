@@ -8,9 +8,9 @@ def decorator_log(path_log: Any = None) -> Any:
     def inner(function: Callable) -> Callable:
         @wraps(function)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            str_out = ''
+            str_out = ""
             try:
-                result = function(*args, **kwargs)
+                function(*args, **kwargs)
             except Exception as e:
                 str_out = f"Функция: {function.__name__} error: {e} input: {args}"
             else:
@@ -33,6 +33,3 @@ def divining_numbers(a: int, b: int) -> float:
     for i in range(1000000):
         continue
     return a / b
-
-if __name__ == '__main__':
-    divining_numbers(2,5)
