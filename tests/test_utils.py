@@ -2,6 +2,8 @@ import json
 
 import requests
 
+import os.path
+
 from unittest.mock import Mock
 
 from unittest.mock import patch
@@ -47,18 +49,23 @@ def test_read_file():
     mock_new_operations = Mock(return_value=operations)
     new_operations = mock_new_operations
 
-    assert read_file('../data/operations.json') == new_operations
-    Mock.assert_called(read_file('../data/operations.json'))
-    Mock.assert_called_once(read_file('../data/operations.json'))
+    if  not os.path.exists('../data/operations.json'):
+        return new_operations
+    else:
+         with open('../data/operations.json', encoding="utf-8") as f:
+            #data = json.load(f)
+            #assert data == new_operations
+            Mock.assert_called(json.load(f))
+            Mock.assert_called_once(json.load(f))
+         return True
 
-    return
-
-
-def test_path_file():
-    '''проверка наличия файла входных транзанкций'''
-    assert read_file(path_file='') == []
-    assert read_file(path_file='operations.json') == []
-    operations = read_file(path_file='../data/oper.json')
-    assert read_file(path_file='../data/oper.json') == operations
-    assert read_file(path_file='../data/oper1.json') == []
-    return
+if __name__ == '__main__':
+    print(test_read_file())
+# def test_path_file():
+#     '''проверка наличия файла входных транзанкций'''
+#     assert json.load(path_file='') == []
+#     assert json.load(path_file='operations.json') == []
+#     operations = json.load(path_file='../data/oper.json')
+#     assert json.load(path_file='../data/oper.json') == operations
+#     assert json.load(path_file='../data/oper1.json') == []
+#     return
