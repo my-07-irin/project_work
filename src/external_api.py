@@ -4,7 +4,6 @@ import requests
 
 import os
 
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,7 +16,7 @@ def conversion_currency(path_file: str) -> list:
     headers = {"apikey": f"{API_KEY}"}
 
     ur1 = "https://api.apilayer.com/exchangerates_data/convert"
-    new_operations = []
+    new_operations: list = list()
 
     with open(path_file, encoding="utf-8") as f:
         data = json.load(f)

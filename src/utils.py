@@ -15,7 +15,7 @@ logger.setLevel(logging.DEBUG)
 
 def read_file(path_file: str) -> list:
     """чтение транзакций из json файла"""
-    new_operations = []
+    new_operations: list = list()
     if not os.path.exists(path_file):
         logger.warning("Файд входных данных не найден")
         logger.info("Приложение закончило работу в связи с отсутствием водного файла")
