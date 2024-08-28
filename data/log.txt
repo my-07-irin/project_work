@@ -1,0 +1,1 @@
+Функция: divining_numbers error: division by zero input: (2, 0)
