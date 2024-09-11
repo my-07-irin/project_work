@@ -3,8 +3,10 @@ from src.category import Category
 
 
 def test_init(category_init):
+    Category.category_count = 0
+    Category.product_count = 0
     assert category_init.name == "Смартфоны"
-    assert category_init.discription == "Смартфоны, как средство не только коммуникации"
+    assert category_init.description == "Смартфоны, как средство не только коммуникации"
     assert category_init.products == [
              {
                   "name": "Samsung Galaxy C23 Ultra",
@@ -27,5 +29,7 @@ def test_init(category_init):
         ]
 
 def test_count_category_product(category_init):
+
     assert category_init.category_count == 1
     assert category_init.product_count == 3
+

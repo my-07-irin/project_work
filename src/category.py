@@ -27,7 +27,6 @@ if __name__ == "__main__":
     category_s = Category(
         "Смартфоны", "Смартфоны, как средство не только коммуникации", [product_1, product_2, product_3]
     )
-    # category_s = Category("Смартфоны", "Смартфоны, как средство не только коммуникации", [])
 
     print(category_s.name)
     print(category_s.description)
