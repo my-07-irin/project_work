@@ -39,8 +39,8 @@ def get_mask_account(account: str) -> str:
         number_account = ""
         logger.warning("Не введен номер счета")
     else:
-        number_account = "Номер счёта введён неверно"
-        logger.error("Номер счета введен неверно")
+        number_account = "номер счёта введён неверно"
+        logger.error("номер счета введен неверно")
     logger.info("Приложение закончило работу")
     return number_account
 

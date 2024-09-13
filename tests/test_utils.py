@@ -49,15 +49,16 @@ def test_read_file():
     mock_new_operations = Mock(return_value=operations)
     new_operations = mock_new_operations
 
-    if  not os.path.exists('../data/operations.json'):
+    if not os.path.exists('../data/operations.json'):
         return new_operations
     else:
-         with open('../data/operations.json', encoding="utf-8") as f:
+        with open('../data/operations.json', encoding="utf-8") as f:
             #data = json.load(f)
             #assert data == new_operations
             Mock.assert_called(json.load(f))
             Mock.assert_called_once(json.load(f))
-         return True
+        return True
+
 
 if __name__ == '__main__':
     print(test_read_file())
