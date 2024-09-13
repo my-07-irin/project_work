@@ -4,9 +4,9 @@ from src.read_from_file_product import open_read_file
 from src.read_from_file_product import create_object_category_product
 
 
-def test_open_file():
+def test_open_file() -> None:
     if os.path.exists(os.path.abspath("../data/products.json")):
-        with open("../data/products.json", 'r', encoding='UTF-8') as f:
+        with open("../data/products.json", "r", encoding="UTF-8") as f:
             data_test = json.load(f)
 
     result = open_read_file("../data/products.json")
@@ -18,3 +18,4 @@ def test_open_file():
     assert result_test_object[0].name == result_object[0].name
     assert result_test_object[0].description == result_object[0].description
     assert result_test_object[0].products == result_object[0].products
+    return

@@ -2,9 +2,10 @@ import json
 import os
 from src.category import Category
 from src.product import Product
+from typing import Any
 
 
-def open_read_file(path_input: str) -> dict:
+def open_read_file(path_input: str) -> list:
     full_path = os.path.abspath(path_input)
     if os.path.exists(full_path):
         with open(full_path, "r", encoding="UTF-8") as f:
@@ -12,7 +13,7 @@ def open_read_file(path_input: str) -> dict:
     return data
 
 
-def create_object_category_product(data_input):
+def create_object_category_product(data_input) -> list:
     category_from_file = []
     for category in data_input:
         products_from_file = []

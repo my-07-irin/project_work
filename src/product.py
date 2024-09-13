@@ -1,12 +1,13 @@
 class Product:
-    """ создание класса продукт"""
+    """создание класса продукт"""
+
     name: str
     description: str
     price: float
     quantity: int
 
-    def __init__(self, name, description, price, quantity):
-        """ инициализация класса продукт"""
+    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
+        """инициализация класса продукт"""
         self.name = name
         self.description = description
         self.price = price

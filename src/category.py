@@ -10,7 +10,7 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name, description, products=None):
+    def __init__(self, name: str, description: str, products: list) -> None:
         """инициализация класса категория продукта"""
         self.name = name
         self.description = description
