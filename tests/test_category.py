@@ -1,7 +1,8 @@
 from src.category import Category
+from typing import Any
 
 
-def test_init(category_init) -> None:
+def test_init(category_init: Any) -> None:
     Category.category_count = 0
     Category.product_count = 0
     assert category_init.name == "Смартфоны"
@@ -18,7 +19,7 @@ def test_init(category_init) -> None:
     ]
 
 
-def test_count_category_product(category_init) -> None:
+def test_count_category_product(category_init: Any) -> None:
 
     assert category_init.category_count == 1
     assert category_init.product_count == 3

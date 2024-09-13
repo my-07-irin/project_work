@@ -5,7 +5,7 @@ from src.product import Product
 from typing import Any
 
 
-def open_read_file(path_input: str) -> list:
+def open_read_file(path_input: str) -> Any:
     full_path = os.path.abspath(path_input)
     if os.path.exists(full_path):
         with open(full_path, "r", encoding="UTF-8") as f:
@@ -13,7 +13,7 @@ def open_read_file(path_input: str) -> list:
     return data
 
 
-def create_object_category_product(data_input) -> list:
+def create_object_category_product(data_input: list) -> list:
     category_from_file = []
     for category in data_input:
         products_from_file = []
@@ -22,7 +22,6 @@ def create_object_category_product(data_input) -> list:
         category_from_file.append(Category(**category))
 
     return category_from_file
-
 
 
 if __name__ == "__main__":

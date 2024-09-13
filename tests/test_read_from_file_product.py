@@ -18,4 +18,3 @@ def test_open_file() -> None:
     assert result_test_object[0].name == result_object[0].name
     assert result_test_object[0].description == result_object[0].description
     assert result_test_object[0].products == result_object[0].products
-    return
