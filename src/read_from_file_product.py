@@ -10,6 +10,7 @@ def open_read_file(path_input: str) -> Any:
     if os.path.exists(full_path):
         with open(full_path, "r", encoding="UTF-8") as f:
             data = json.load(f)
+
     return data
 
 
